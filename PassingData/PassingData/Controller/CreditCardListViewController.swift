@@ -60,14 +60,14 @@ extension CreditCardListViewController: CreditCardDelegate {
     func editCreditCard(card: CreditCard, mutated: CreditCard) {
         if arrayOfCards.contains(where: { (oldCard) -> Bool in return card == oldCard }) {
             arrayOfCards = arrayOfCards.map {
-                var mutableBook = $0
+                var mutatedCard = $0
                 if $0.number == card.number {
-                    mutableBook = mutated
+                    mutatedCard = mutated
                     DispatchQueue.main.async { [weak self] in
                         self?.cardCollection.reloadData()
                     }
                 }
-                return mutableBook
+                return mutatedCard
             }
         }
     }
